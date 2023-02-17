@@ -4,16 +4,19 @@ import subprocess
 import sys
 import io
 import getpass
+import platform
 
+print(platform.uname().node)
 
-operating_system = sys.argv[1].lower()
-
+# operating_system = sys.argv[1].lower()
+home_directory = f'/home/{getpass.getuser()}'
 ubuntu_packages = ['tmux','python3-pip','lightdm','curl','wget','zsh','lolcat','dconf-editor','software-properties-common','build-essential','gnome-tweaks','gnome-shell-extensions']
 kali_packages = ['lolcat','python3-pip','curl','dnsrecon','enum4linux','feroxbuster','gobuster','nbtscan','onesixtyone','oscanner','smbclient','smbmap','snmpwalk','sslscan','svwar','tnscmd10g','whatweb','wkhtmltopdf','redis-tools','impacket-scripts']
-zsh_config_path = f'/home/{getpass.getuser()}/.zshrc'
+zsh_config_path = f'{home_directory}/.zshrc'
 banner = 'lolcat ~/banner'
-
+current_os = platform.uname().node
 def configure():
+
 	print("Installing Oh-my-Zsh")
 	os.system('sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended')
 	os.system('cp banner ~')
@@ -26,7 +29,8 @@ def configure():
 		file.close()
 	else:
 		with open(zsh_config_path,'a') as f:
-			f.write(banner)
+			f.write(banner + '\n' +f'source {home_directory}/zsh/aliases.zsh')
+			# f.write()
 		f.close()		
 	os.system('cp ./tmux/.tmux.conf ~')
 	print('.....Installing Fonts......')
@@ -35,7 +39,7 @@ def configure():
 	print('...Fonts are installed.....')
 	os.system('cp -r ./wallpapers ~/Pictures/')
 	os.system('cp -r ./zsh ~')
-	os.system('source ~/.zshrc')
+	os.system(f'source {zsh_config_path}')
 
 
 def update():
@@ -59,11 +63,11 @@ def configure_kali():
 
 def install(operating_system):
 
-	if operating_system == 'ubuntu':
+	if current_os == 'ubuntu':
 		configure_ubuntu()
-	elif operating_system == 'kali':
+	elif current_os == 'kali':
 		configure_kali()
 	elif operating_system == 'windows' or sys.argv[1]=="":
 		configure_windows()
 
-install(operating_system)
+install(current_os)
