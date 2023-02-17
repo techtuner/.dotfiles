@@ -1,4 +1,3 @@
-# Python script to configure Ubuntu, Kali and Windows.... WORK IN PROGRESS
 import os
 import subprocess
 import sys
@@ -56,18 +55,18 @@ def configure_ubuntu():
 
 def configure_kali():
 	update()
-	for package in ubuntu_packages:
+	for package in kali_packages:
 		os.system(f'echo "Installing {package}"')
 		os.system(f'sudo apt-get install {package} -y -qq')
 	configure()
-
+	boxes = input('Do you want to create a folder for Practicing Boxes?(y/n) : ')
+	if boxes == 'y' && !os.path.exists(f'{home_directory}/Desktop/Boxes'):
+		os.mkdir(f'{home_directory}/Desktop/Boxes')
+	else
 def install(operating_system):
 
 	if current_os == 'ubuntu':
 		configure_ubuntu()
 	elif current_os == 'kali':
 		configure_kali()
-	elif operating_system == 'windows' or sys.argv[1]=="":
-		configure_windows()
-
 install(current_os)
