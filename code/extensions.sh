@@ -11,7 +11,7 @@ code --install-extension yzhang.markdown-all-in-one
 code --install-extension christian-kohler.path-intellisense
 code --install-extension esbenp.prettier-vscode
 code --install-extension miguelsolorio.symbols
-code --install-extension jaakko.black
+code --install-extension nur.just-black
 code --install-extension MS-vsliveshare.vsliveshare
 code --install-extension steoates.autoimport
 code --install-extension streetsidesoftware.code-spell-checker
@@ -20,3 +20,7 @@ code --install-extension bradlc.vscode-tailwindcss
 code --install-extension ms-python.python
 code --install-extension ms-python.black-formatter
 code --install-extension aaron-bond.better-comments
+code --install-extension usernamehw.errorlens
+code --install-extension yzhang.markdown-all-in-one
+code --install-extension alefragnani.project-manager
+code --install-extension christian-kohler.path-intellisense
